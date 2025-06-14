@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Truth Revealed - Murder at Maple Manor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a0b3d, #3c1361, #1a0b3d);
+      color: #e0d7f5;
+      font-family: 'Roboto Slab', serif;
+      padding: 2rem;
+      min-height: 100vh;
+      text-shadow: 0 0 4px #8e44ad;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(30, 12, 50, 0.9);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 15px 5px #8e44ad;
+    }
+
+    h1 {
+      color: #a678d1;
+      text-align: center;
+      text-shadow: 0 0 8px #a678d1;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-main {
+      background-color: #a678d1;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      margin: 10px;
+      box-shadow: 0 0 12px #a678d1;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-main:hover {
+      background-color: #8a60b5;
+      box-shadow: 0 0 20px #9255e6;
+      color: #fff;
+    }
+  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    <h1>🔎 The Truth Revealed</h1>
+
+    <p>
+      It was <strong>{{ killer }}</strong> all along.
+    </p>
+
+    <p>
+      {{ killer }} had the perfect opportunity and motive. While others were preoccupied during dinner, {{ killer }} discreetly laced Harold Doyle’s wine glass with poison — not the bottle, just the glass. This detail was confirmed by the forensic team.
+    </p>
+
+    <p>
+      The motive? A deep and long-held grudge. Years ago, Harold had manipulated the will of the family estate, cutting {{ killer }} out of their rightful inheritance. {{ killer }} kept up appearances at the manor all these years, quietly waiting for the perfect moment. The annual dinner, where everyone raised a glass in toast, offered the ideal setting for a murder that could be disguised as a heart attack — silent, undetectable, and in front of everyone.
+    </p>
+
+    <p>
+      During questioning, {{ killer }} kept calm but gave away subtle inconsistencies — forgetting details, deflecting questions, or overly blaming others. The truth was there, buried beneath their lies.
+    </p>
+
+    <p>
+      Thank you for playing <strong>Murder at Maple Manor</strong>. We hope you enjoyed the mystery. Play again to uncover new twists and refine your detective instincts!
+    </p>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('start') }}" class="btn-main">🔁 Play Again</a>
+    </div>
+  </div>
+</body>
+</html>

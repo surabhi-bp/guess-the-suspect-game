@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🕵️ Murder at Maple Manor - Gameplay</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    /* Your original styles from above remain unchanged */
+    body {
+      background: linear-gradient(135deg, #1a0b3d, #3c1361, #1a0b3d);
+      font-family: 'Roboto Slab', serif;
+      color: #e0d7f5;
+      padding: 2rem;
+      text-shadow: 0 0 5px #8e44ad;
+    }
+
+    .container {
+      max-width: 900px;
+      background-color: rgba(30, 12, 50, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 15px 4px #8e44ad;
+    }
+
+    h1, h2 {
+      color: #a678d1;
+      text-align: center;
+      text-shadow: 0 0 7px #a678d1;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .form-label {
+      color: #d9c5f5;
+    }
+
+    .form-select {
+      background-color: #1a0b3d;
+      color: #e0d7f5;
+      border: 2px solid #a678d1;
+      border-radius: 10px;
+      box-shadow: 0 0 7px #6e3fd6;
+    }
+
+    .form-select:focus {
+      border-color: #b889ec;
+      box-shadow: 0 0 10px #a678d1;
+    }
+
+    .btn-main {
+      background-color: #a678d1;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 3rem;
+      font-size: 1.25rem;
+      border-radius: 50px;
+      box-shadow: 0 0 12px #a678d1;
+      transition: all 0.3s ease;
+    }
+
+    .btn-main:hover {
+      background-color: #8a60b5;
+      box-shadow: 0 0 20px #9255e6;
+      color: #fff;
+    }
+
+    .log-entry {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #6c5ce7;
+      color: #e0d7f5;
+    }
+
+    .system-message {
+      font-style: italic;
+      color: #bfa3eb;
+    }
+
+    #log {
+      background-color: #1a0b3d;
+      border: 2px solid #6e3fd6;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #6e3fd6;
+    }
+
+    .neon-hint {
+      background-color: #20143a;
+      border-left: 5px solid #9b59b6;
+      color: #f1cfff;
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #9255e6;
+    }
+
+    .btn-warning {
+      border-radius: 50px;
+      font-weight: bold;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 0 12px #f39c12;
+    }
+
+    .btn-warning:hover {
+      background-color: #e67e22;
+      box-shadow: 0 0 20px #f39c12;
+    }
+
+    select option {
+      background-color: #2a1459;
+      color: #f3e8ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">🔍 Murder at Maple Manor</h1>
+
+    <p class="lead">
+      The victim, Mr. Harold Doyle, was poisoned during dinner.<br>
+      Question the suspects to uncover the truth.
+    </p>
+
+    <div id="log" class="mb-4 p-3">
+      <div class="log-entry system-message">
+        <em>Investigation log will appear here...</em>
+      </div>
+    </div>
+
+    <form id="ask-form">
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <label for="suspect" class="form-label">Select suspect:</label>
+          <select id="suspect" name="suspect" class="form-select" required>
+            <option value="" disabled selected>Choose a suspect</option>
+            {% for name, info in suspects.items() %}
+              <option value="{{ name }}">{{ name }} ({{ info.role }})</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label for="question" class="form-label">Select question:</label>
+          <select id="question" name="question" class="form-select" required>
+            <option value="" disabled selected>Choose a question</option>
+            {% for q_num, q_text in questions.items() %}
+              <option value="{{ q_num }}">{{ q_text }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <p class="text-warning fw-semibold text-center">
+        ⚠️ You can ask only 4 questions. Use them wisely.
+      </p>
+
+      <button type="submit" class="btn btn-main w-100 mb-4">🔍 Ask Question</button>
+    </form>
+
+    <div id="hint-container" class="mt-3"></div>
+    <div id="conclusion-btn" class="text-center mt-4"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

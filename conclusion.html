@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Case Conclusion - Murder at Maple Manor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a0b3d, #3c1361, #1a0b3d);
+      color: #e0d7f5;
+      font-family: 'Roboto Slab', serif;
+      padding: 2rem;
+      min-height: 100vh;
+      text-shadow: 0 0 5px #8e44ad;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(30, 12, 50, 0.85);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      box-shadow: 0 0 15px 5px #8e44ad;
+      text-align: center;
+    }
+
+    h1 {
+      color: #a678d1;
+      text-shadow: 0 0 7px #a678d1;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 2px solid #a678d1;
+      background-color: #1a0b3d;
+      color: white;
+      margin-top: 0.5rem;
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 7px #6e3fd6;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 1rem;
+      display: block;
+      color: #d9c5f5;
+    }
+
+    .btn-main {
+      background-color: #a678d1;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      margin: 10px;
+      box-shadow: 0 0 12px #a678d1;
+      transition: all 0.3s ease;
+      border: none;
+      display: inline-block;
+    }
+
+    .btn-main:hover {
+      background-color: #8a60b5;
+      box-shadow: 0 0 20px #9255e6;
+      color: #fff;
+    }
+
+    .result {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      line-height: 1.7;
+    }
+
+    .result span {
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    .motive {
+      font-style: italic;
+      color: #d7bfff;
+    }
+
+  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    <h1>🔎 Case Conclusion</h1>
+
+    {% if solved is none %}
+      <form method="POST">
+        <label for="guess">Who do you think is the killer?</label>
+        <select name="guess" id="guess" required>
+          <option value="" disabled selected>Select a suspect</option>
+          {% for name in suspects %}
+            <option value="{{ name }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+        <br />
+        <button type="submit" class="btn-main mt-4">Submit Guess</button>
+      </form>
+
+    {% else %}
+      <div class="result">
+        {% if solved %}
+          🎉 <strong>Correct!</strong> You identified <span>{{ killer }}</span> as the murderer.
+        {% else %}
+          ❌ <strong>Incorrect.</strong> The real killer was <span>{{ killer }}</span>.
+        {% endif %}
+        <br /><br />
+        Their motive was: <span class="motive">{{ suspects[killer]['motive'] }}</span><br /><br />
+        Thank you for playing the Murder Mystery Game!
+      </div>
+
+      <div class="mt-4">
+        <a href="{{ url_for('start') }}" class="btn-main">🔄 Play Again</a>
+        <a href="{{ url_for('true_story') }}" class="btn-main">📜 What Really Happened</a>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

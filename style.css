@@ -1,0 +1,197 @@
+/* ----------------- Base Styling ----------------- */
+body {
+  background: linear-gradient(135deg, #0d0d1a, #1a1a40);
+  font-family: 'Roboto Slab', 'Share Tech Mono', monospace;
+  color: #ccc;
+  min-height: 100vh;
+  padding: 1.5rem;
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, p {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* ----------------- Neon Theme ----------------- */
+.text-neon-purple {
+  color: #b07fff;
+  text-shadow:
+    0 0 5px #b07fff,
+    0 0 10px #b07fff,
+    0 0 20px #a05fff;
+}
+
+.border-neon-purple {
+  border-color: #b07fff !important;
+  box-shadow: 0 0 8px #b07fff;
+}
+
+.btn-neon-purple {
+  background-color: #b07fff;
+  color: #1a1a40;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 10px #b07fff,
+    0 0 20px #a05fff;
+}
+
+.btn-neon-purple:hover {
+  background-color: #9255e6;
+  color: #fff;
+  box-shadow:
+    0 0 20px #9255e6,
+    0 0 30px #6e3fd6;
+  cursor: pointer;
+}
+
+.btn-neon-purple:disabled {
+  background-color: #4a3a6e;
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ----------------- Log Area ----------------- */
+#log {
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #12122a;
+  border: 2px solid #b07fff;
+  border-radius: 0.6rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 10px #b07fff88;
+}
+
+/* Log Entries */
+.log-entry {
+  margin-bottom: 0.9rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.log-entry:hover {
+  transform: scale(1.01);
+}
+
+/* Truth messages */
+.truth-message {
+  background-color: #153740;
+  border-left: 5px solid #39e6b2;
+  color: #a0ffe8;
+  text-shadow: 0 0 5px #39e6b2;
+}
+
+/* Lie messages */
+.lie-message {
+  background-color: #401517;
+  border-left: 5px solid #e63946;
+  color: #ffb4b4;
+  text-shadow: 0 0 5px #e63946;
+}
+
+/* System message */
+.system-message {
+  font-style: italic;
+  color: #999;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* ----------------- Hint Box ----------------- */
+.neon-hint {
+  background-color: #29003d;
+  border: 2px solid #b07fff;
+  color: #d1c4ff;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.2rem;
+  text-align: center;
+  text-shadow: 0 0 8px #b07fff;
+  box-shadow: 0 0 15px #b07fff;
+}
+
+/* ----------------- Forms & Selects ----------------- */
+select.form-select {
+  background-color: #1a1a40;
+  color: #eee;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 8px #b07fff inset;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid #b07fff;
+}
+
+select.form-select:focus {
+  outline: none;
+  border-color: #9255e6;
+  box-shadow: 0 0 15px #9255e6 inset;
+}
+
+.form-label {
+  color: #b07fff;
+  text-shadow: 0 0 5px #b07fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* ----------------- Guess Button ----------------- */
+#guess-btn {
+  margin-top: 2rem;
+  padding: 0.7rem 2rem;
+  border-radius: 40px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Pre-guess Message */
+#guess-message {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: #ffccff;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 0 0 5px #b07fff;
+}
+
+/* ----------------- Responsive ----------------- */
+@media (max-width: 576px) {
+  body {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  #log {
+    font-size: 1rem;
+  }
+
+  .btn-neon-purple {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  select.form-select {
+    font-size: 0.95rem;
+  }
+}
